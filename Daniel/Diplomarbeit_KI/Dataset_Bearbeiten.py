@@ -7,7 +7,7 @@ from PIL import Image, ImageTk
 # ==============================
 # CONFIG
 # ==============================
-dataset_folder = Path("Dataset/Videos_Pictures")
+dataset_folder = Path("Dataset\Videos_Pictures\Videos_Pictures_03")
 yaml_file = Path("data.yaml")
 finished_folder = Path("Dataset/Videos_Pictures_finished")
 finished_folder.mkdir(exist_ok=True)
@@ -86,7 +86,6 @@ def update_image():
         img, label = dataset[index]
         boxes = load_boxes(label)
         if len(boxes) == 0:
-            # Kein Objekt im Label, Bild evtl. löschen oder überspringen
             index += 1
             box_index = 0
             continue
@@ -100,12 +99,20 @@ def update_image():
         pil_img.thumbnail((800, 600))
         photo = ImageTk.PhotoImage(pil_img)
         canvas.config(image=photo)
-        info_label.config(text=f"Bild {index+1}/{len(dataset)}: {img.name}  (Objekt {box_index+1}/{len(boxes)})")
-        cls_id = boxes[box_index][0]
+
+        # NEU: Anzahl der Objekte anzeigen
+        total_objects = len(boxes)
+        info_label.config(
+            text=f"Bild {index+1}/{len(dataset)}: {img.name}  "
+                 f"(Objekt {box_index+1}/{total_objects}, insgesamt {total_objects})"
+        )
+
+        cls_id = int(boxes[box_index][0])
         if cls_id is not None and cls_id < len(class_names):
             class_label.config(text=f"Aktuelle Klasse: {class_names[cls_id]}")
             class_dropdown.current(cls_id)
         break
+
 
 def prev_image(event=None):
     global index, box_index
