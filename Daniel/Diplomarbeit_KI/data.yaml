@@ -2,8 +2,32 @@ train: ../train/images
 val: ../valid/images
 test: ../test/images
 
-nc: 15
-names: ['00_speedlimit_20', '01_speedlimit_30', '02_speedlimit_50', '03_speedlimit_60', '04_speedlimit_70', '05_speedlimit_80', '06_end_of_speedlimit_80', '07_speedlimit_100', '08_no_overtaking', '09_yield', '10_stop', '11_no_vehicles', '12_no_entry', '13_end_all_limits', '14_end_of_no_overtaking']
+nc: 23
+names: [
+  '00_speedlimit_20',
+  '01_speedlimit_30',
+  '02_speedlimit_50',
+  '03_speedlimit_60',
+  '04_speedlimit_70',
+  '05_speedlimit_80',
+  '06_end_of_speedlimit_80',
+  '07_speedlimit_100',
+  '08_no_overtaking',
+  '09_yield',
+  '10_stop',
+  '11_no_vehicles',
+  '12_no_entry',
+  '13_end_all_limits',
+  '14_end_of_no_overtaking',
+  '15_end_of_speedlimit_20',
+  '16_end_of_speedlimit_30',
+  '17_end_of_speedlimit_50',
+  '18_end_of_speedlimit_60',
+  '19_end_of_speedlimit_70',
+  '20_end_of_speedlimit_100',
+  '21_speedlimit_130',
+  '22_end_of_speedlimit_130'
+]
 
 roboflow:
   workspace: diplomarbeit-g1mcb
